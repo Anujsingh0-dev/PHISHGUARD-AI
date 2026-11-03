@@ -1,10 +1,4 @@
-# PHISHGUARD AI — Production Dependencies
-# Lightweight for Fast Cloud Deployment (Streamlit Cloud & Vercel)
-
-pandas>=2.1.0
-numpy>=1.26.0
-scikit-learn>=1.4.0
-joblib>=1.3.0
-matplotlib>=3.8.0
-seaborn>=0.13.0
-streamlit>=1.35.0
+# requirements.txt
+# Empty for Vercel Serverless Function Deployment
+# The API uses Python 3.12 standard library with tree_rules.json (<1MB bundle size).
+# For local ML training and development, use: pip install -r requirements-dev.txt
