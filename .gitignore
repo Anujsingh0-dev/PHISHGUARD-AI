@@ -1,0 +1,57 @@
+# PHISHGUARD AI — .gitignore
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Raw dataset files (large 54MB CSV — do not commit to GitHub)
+data/raw/*.csv
+data/raw/*.zip
+data/raw/*.json
+
+# Large processed training arrays (>100MB — do not commit to GitHub)
+data/processed/*.npy
+data/processed/*.csv
+data/processed/*.pkl
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+*.env
+
+# Streamlit cache
+.streamlit/
+
+# Pytest cache
+.pytest_cache/
+*.pytest_cache
+
+# Coverage reports
+htmlcov/
+.coverage

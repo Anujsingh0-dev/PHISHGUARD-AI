@@ -1,0 +1,87 @@
+{
+    "model_name": "URL-Only Model",
+    "generated_at": "2026-11-04T01:10:50.054346",
+    "metrics": {
+        "all_models": [
+            {
+                "model_name": "Logistic Regression",
+                "accuracy": 0.9752,
+                "precision": 0.9901,
+                "recall": 0.9516,
+                "f1_score": 0.9705,
+                "roc_auc": 0.0063,
+                "confusion_matrix": [
+                    [
+                        19212,
+                        977
+                    ],
+                    [
+                        193,
+                        26777
+                    ]
+                ]
+            },
+            {
+                "model_name": "Decision Tree",
+                "accuracy": 0.9941,
+                "precision": 0.9991,
+                "recall": 0.9872,
+                "f1_score": 0.9931,
+                "roc_auc": 0.0038,
+                "confusion_matrix": [
+                    [
+                        19930,
+                        259
+                    ],
+                    [
+                        18,
+                        26952
+                    ]
+                ]
+            },
+            {
+                "model_name": "Random Forest",
+                "accuracy": 0.9838,
+                "precision": 0.9933,
+                "recall": 0.9687,
+                "f1_score": 0.9809,
+                "roc_auc": 0.0032,
+                "confusion_matrix": [
+                    [
+                        19558,
+                        631
+                    ],
+                    [
+                        132,
+                        26838
+                    ]
+                ]
+            }
+        ],
+        "best_model": "Decision Tree",
+        "feature_names": [
+            "url_length",
+            "domain_length",
+            "path_length",
+            "num_dots",
+            "num_hyphens",
+            "num_underscores",
+            "num_slashes",
+            "num_digits",
+            "digit_ratio",
+            "num_special_chars",
+            "has_at_symbol",
+            "has_double_slash",
+            "has_ip_as_host",
+            "is_https",
+            "num_subdomains",
+            "num_query_params",
+            "has_port",
+            "has_percent_encoding",
+            "has_punycode",
+            "num_path_segments",
+            "suspicious_words_count",
+            "entropy"
+        ]
+    }
+}
