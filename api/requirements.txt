@@ -1,0 +1,3 @@
+# api/requirements.txt
+# Empty: Vercel serverless function uses native Python 3.12 standard libraries only.
+# No heavy packages required, keeping bundle size under 1MB.
