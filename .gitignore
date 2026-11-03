@@ -45,9 +45,6 @@ Thumbs.db
 .env
 *.env
 
-# Streamlit cache
-.streamlit/
-
 # Pytest cache
 .pytest_cache/
 *.pytest_cache

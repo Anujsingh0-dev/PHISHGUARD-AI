@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHISHGUARD AI — Cybersecurity URL Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0b0f17; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .cyber-card { background: #131b26; border: 1px solid #1f2937; border-radius: 12px; }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <!-- Navbar -->
+    <header class="border-b border-gray-800 bg-gray-900/60 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl font-bold">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-wide">PHISHGUARD <span class="text-blue-400">AI</span></h1>
+                    <p class="text-xs text-gray-400">ML-Based Phishing URL & Website Detection</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 text-sm">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                    <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse"></span> Mode B Online
+                </span>
+                <a href="https://github.com/Anujsingh0-dev/PHISHGUARD-AI" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-1 w-full space-y-8">
+        <!-- Hero & Disclaimer -->
+        <div class="text-center space-y-3">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Detect Suspicious Websites Through <span class="gradient-text">Machine Learning</span>
+            </h2>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                Trained on 235,795 real-world URLs from the official <b>UCI PhiUSIIL Dataset</b>. Features offline structural analysis and authority verification.
+            </p>
+            <div class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs px-3 py-1.5 rounded-lg max-w-xl mx-auto text-left">
+                ⚠️ <b>Academic Prototype:</b> Built by Anuj Singh (B.Tech IT). Never replaces official browser security.
+            </div>
+        </div>
+
+        <!-- URL Input Card -->
+        <div class="cyber-card p-6 shadow-2xl space-y-4">
+            <h3 class="text-base font-semibold text-gray-200 flex items-center">
+                <i class="fa-solid fa-magnifying-glass text-blue-400 mr-2"></i> Real-Time URL Analysis
+            </h3>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-1">
+                    <input type="text" id="urlInput" placeholder="Enter URL (e.g., google.com, https://github.com, or paypal-verify.com)"
+                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <button id="analyseBtn" onclick="analyzeUrl()" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-lg text-sm transition flex items-center justify-center space-x-2">
+                    <span>Analyse URL</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <!-- Quick Chips -->
+            <div class="flex flex-wrap gap-2 text-xs text-gray-400 items-center">
+                <span>Quick tests:</span>
+                <button onclick="setAndAnalyze('google.com')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">google.com</button>
+                <button onclick="setAndAnalyze('https://github.com/torvalds/linux')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">github.com</button>
+                <button onclick="setAndAnalyze('http://paypal-security-update.com/login.php')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">paypal-security-update.com</button>
+                <button onclick="setAndAnalyze('http://192.168.1.1/admin')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">192.168.1.1</button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="hidden text-center py-8">
+            <div class="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-sm text-gray-400 mt-3">Extracting 22 URL features and running ML inference...</p>
+        </div>
+
+        <!-- Result Card -->
+        <div id="resultCard" class="hidden cyber-card p-6 space-y-6">
+            <div id="verdictBanner" class="p-4 rounded-xl flex items-center space-x-4 border">
+                <div id="verdictIcon" class="text-3xl"></div>
+                <div>
+                    <h4 id="verdictTitle" class="text-lg font-bold"></h4>
+                    <p id="verdictDesc" class="text-xs mt-0.5"></p>
+                </div>
+            </div>
+
+            <!-- Probability Bars & Metrics -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-gray-900/80 p-3.5 rounded-lg border border-gray-800">
+                    <span class="text-xs text-gray-400 block">Classification</span>
+                    <span id="metricClass" class="text-base font-bold text-gray-100"></span>
+                </div>
+                <div class="bg-gray-900/80 p-3.5 rounded-lg border border-gray-800">
+                    <span class="text-xs text-gray-400 block">Risk Status</span>
+                    <span id="metricRisk" class="text-base font-bold text-gray-100"></span>
+                </div>
+                <div class="bg-gray-900/80 p-3.5 rounded-lg border border-gray-800">
+                    <span class="text-xs text-gray-400 block">Phishing Probability</span>
+                    <span id="metricPhishProb" class="text-base font-bold text-red-400"></span>
+                </div>
+                <div class="bg-gray-900/80 p-3.5 rounded-lg border border-gray-800">
+                    <span class="text-xs text-gray-400 block">Legitimate Probability</span>
+                    <span id="metricLegitProb" class="text-base font-bold text-green-400"></span>
+                </div>
+            </div>
+
+            <!-- Diagnostic Reasons -->
+            <div id="reasonsContainer" class="space-y-2">
+                <h5 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Security Diagnostic Findings</h5>
+                <ul id="reasonsList" class="space-y-1.5 text-sm text-gray-300"></ul>
+            </div>
+
+            <!-- Features Toggle -->
+            <div>
+                <button onclick="toggleFeatures()" class="text-xs text-blue-400 hover:text-blue-300 font-medium flex items-center space-x-1.5">
+                    <span>Toggle 22 Extracted Features Table</span>
+                    <i id="featCaret" class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+                <div id="featuresTableWrapper" class="hidden mt-3 max-h-60 overflow-y-auto border border-gray-800 rounded-lg">
+                    <table class="w-full text-left text-xs text-gray-300">
+                        <thead class="bg-gray-900 text-gray-400 border-b border-gray-800 sticky top-0">
+                            <tr>
+                                <th class="py-2 px-3">Feature Name</th>
+                                <th class="py-2 px-3">Extracted Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="featuresTbody" class="divide-y divide-gray-800/60 bg-gray-900/40"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic ML Architecture Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="cyber-card p-5 space-y-2">
+                <div class="text-blue-400 text-lg"><i class="fa-solid fa-database"></i></div>
+                <h4 class="font-bold text-sm text-gray-100">PhiUSIIL Dataset (UCI)</h4>
+                <p class="text-xs text-gray-400">235,795 verified samples (134.8k legit, 100.9k phish) collected by Prasad & Chandra (2024).</p>
+            </div>
+            <div class="cyber-card p-5 space-y-2">
+                <div class="text-indigo-400 text-lg"><i class="fa-solid fa-brain"></i></div>
+                <h4 class="font-bold text-sm text-gray-100">Two-Model Architecture</h4>
+                <p class="text-xs text-gray-400">Mode A (50 features full research model) + Mode B (22 URL string features for safe live prediction).</p>
+            </div>
+            <div class="cyber-card p-5 space-y-2">
+                <div class="text-emerald-400 text-lg"><i class="fa-solid fa-lock"></i></div>
+                <h4 class="font-bold text-sm text-gray-100">Offline & Privacy-First</h4>
+                <p class="text-xs text-gray-400">Zero network queries sent to third parties. URLs evaluated strictly on structural characteristics.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 py-6 text-center text-xs text-gray-500 bg-gray-950/60">
+        <p>PHISHGUARD AI • Academic Project for B.Tech Information Technology</p>
+        <p class="mt-1">Developed by <b>Anuj Singh</b> (Roll: 2555178) • CGC College of Engineering, Landran</p>
+    </footer>
+
+    <script>
+        const urlInput = document.getElementById("urlInput");
+        urlInput.addEventListener("keypress", (e) => { if (e.key === "Enter") analyzeUrl(); });
+
+        function setAndAnalyze(val) {
+            urlInput.value = val;
+            analyzeUrl();
+        }
+
+        async function analyzeUrl() {
+            const url = urlInput.value.trim();
+            if (!url) return;
+
+            document.getElementById("loading").classList.remove("hidden");
+            document.getElementById("resultCard").classList.add("hidden");
+
+            try {
+                const res = await fetch(`/api/predict?url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+                document.getElementById("loading").classList.add("hidden");
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+                renderResult(data);
+            } catch (err) {
+                document.getElementById("loading").classList.add("hidden");
+                alert("Error connecting to prediction API: " + err);
+            }
+        }
+
+        function renderResult(data) {
+            const card = document.getElementById("resultCard");
+            const banner = document.getElementById("verdictBanner");
+            const icon = document.getElementById("verdictIcon");
+            const title = document.getElementById("verdictTitle");
+            const desc = document.getElementById("verdictDesc");
+
+            if (data.prediction === 0) {
+                banner.className = "p-4 rounded-xl flex items-center space-x-4 border bg-red-950/40 border-red-500/50 text-red-300";
+                icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-400"></i>';
+                title.innerText = "⚠️ POTENTIALLY PHISHING";
+                title.className = "text-lg font-bold text-red-400";
+                desc.innerText = "This URL displays characteristics or anomalies strongly associated with deceptive websites.";
+            } else {
+                banner.className = "p-4 rounded-xl flex items-center space-x-4 border bg-green-950/40 border-green-500/50 text-green-300";
+                icon.innerHTML = '<i class="fa-solid fa-circle-check text-green-400"></i>';
+                title.innerText = "✅ PREDICTED LEGITIMATE";
+                title.className = "text-lg font-bold text-green-400";
+                desc.innerText = "This URL structure is consistent with established legitimate website patterns.";
+            }
+
+            document.getElementById("metricClass").innerText = data.prediction_label;
+            document.getElementById("metricRisk").innerText = data.risk_level || "Standard";
+            document.getElementById("metricPhishProb").innerText = (data.phishing_prob * 100).toFixed(1) + "%";
+            document.getElementById("metricLegitProb").innerText = (data.legitimate_prob * 100).toFixed(1) + "%";
+
+            // Reasons
+            const list = document.getElementById("reasonsList");
+            list.innerHTML = "";
+            (data.reasons || []).forEach(r => {
+                const li = document.createElement("li");
+                li.className = "flex items-start space-x-2";
+                li.innerHTML = `<span class="text-blue-400">•</span><span>${r}</span>`;
+                list.appendChild(li);
+            });
+
+            // Features table
+            const tbody = document.getElementById("featuresTbody");
+            tbody.innerHTML = "";
+            for (const [k, v] of Object.entries(data.features || {})) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td class="py-1.5 px-3 font-mono text-gray-400">${k}</td><td class="py-1.5 px-3 font-mono text-gray-200">${v}</td>`;
+                tbody.appendChild(tr);
+            }
+
+            card.classList.remove("hidden");
+        }
+
+        function toggleFeatures() {
+            const el = document.getElementById("featuresTableWrapper");
+            const caret = document.getElementById("featCaret");
+            if (el.classList.contains("hidden")) {
+                el.classList.remove("hidden");
+                caret.className = "fa-solid fa-chevron-up text-xs";
+            } else {
+                el.classList.add("hidden");
+                caret.className = "fa-solid fa-chevron-down text-xs";
+            }
+        }
+    </script>
+</body>
+</html>
