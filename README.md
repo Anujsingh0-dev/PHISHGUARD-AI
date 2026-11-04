@@ -1,3 +1,15 @@
+---
+title: PHISHGUARD AI - Phishing Detection System
+emoji: 🛡️
+colorFrom: blue
+colorTo: indigo
+sdk: streamlit
+sdk_version: "1.35.0"
+app_file: app/app.py
+pinned: false
+license: mit
+---
+
 # PHISHGUARD AI 🛡️
 ### Machine Learning-Based Phishing URL and Website Detection System
 
