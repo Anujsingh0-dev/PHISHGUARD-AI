@@ -3,9 +3,7 @@ title: PHISHGUARD AI - Phishing Detection System
 emoji: 🛡️
 colorFrom: blue
 colorTo: indigo
-sdk: streamlit
-sdk_version: "1.35.0"
-app_file: app/app.py
+sdk: static
 pinned: false
 license: mit
 ---
