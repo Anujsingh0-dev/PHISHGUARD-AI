@@ -58,10 +58,6 @@
                 <i class="fa-solid fa-chart-line"></i>
                 <span>Model Benchmark</span>
             </button>
-            <button onclick="switchTab('academic')" id="tab-academic" class="tab-btn text-gray-400 hover:text-gray-200 px-4 py-2 rounded-lg border border-transparent transition flex items-center space-x-2">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span>Academic & Viva</span>
-            </button>
         </div>
     </div>
 
@@ -78,8 +74,8 @@
                 <p class="text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto">
                     Evaluates 22 lexical and structural URL characteristics using a Decision Tree model trained on 235,795 verified URLs from the UCI PhiUSIIL dataset.
                 </p>
-                <div class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs px-3 py-1 rounded-lg">
-                    ⚠️ <b>Academic Prototype:</b> Discloses false positive/negative risks honestly. Never replaces full browser antivirus protection.
+                <div class="inline-block bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs px-3.5 py-1 rounded-lg">
+                    🛡️ <b>Multi-Layer Threat Engine:</b> 22-Feature Structural ML • Brand Impersonation Guard • Authority Verification
                 </div>
             </div>
 
@@ -103,7 +99,7 @@
                     <button onclick="setAndRun('https://github.com/torvalds/linux')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">github.com/torvalds/linux</button>
                     <button onclick="setAndRun('http://paypal-security-update.com/login.php')" class="bg-red-950/40 hover:bg-red-900/60 text-red-300 px-2.5 py-1 rounded border border-red-800 transition">paypal-security-update.com</button>
                     <button onclick="setAndRun('http://192.168.1.1/admin/login')" class="bg-red-950/40 hover:bg-red-900/60 text-red-300 px-2.5 py-1 rounded border border-red-800 transition">192.168.1.1</button>
-                    <button onclick="setAndRun('https://cgc.edu.in')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded border border-gray-700 transition">cgc.edu.in</button>
+                    <button onclick="setAndRun('http://free-crypto-giveaway-winner.top/claim-prize')" class="bg-red-950/40 hover:bg-red-900/60 text-red-300 px-2.5 py-1 rounded border border-red-800 transition">crypto-giveaway.top</button>
                 </div>
             </div>
 
@@ -183,8 +179,8 @@
                 <h3 class="text-lg font-bold text-gray-100 flex items-center">
                     <i class="fa-solid fa-list-check text-indigo-400 mr-2"></i> Batch URL Scanner
                 </h3>
-                <p class="text-xs text-gray-400">Paste multiple URLs (one per line) to evaluate up to 20 links at once.</p>
-                <textarea id="batchInput" rows="6" placeholder="google.com&#10;https://github.com/torvalds&#10;http://paypal-security-update.com&#10;http://192.168.1.1/admin&#10;https://cgc.edu.in"
+                <p class="text-xs text-gray-400">Paste multiple URLs (one per line) to evaluate up to 25 links simultaneously.</p>
+                <textarea id="batchInput" rows="6" placeholder="google.com&#10;https://github.com/torvalds&#10;http://paypal-security-update.com&#10;http://192.168.1.1/admin&#10;http://netflix-billing-alert.com"
                     class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-xs font-mono text-gray-100 focus:outline-none focus:border-blue-500"></textarea>
                 <button onclick="runBatchAnalysis()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-5 py-2.5 rounded-lg text-xs transition">
                     Scan Batch URLs
@@ -240,13 +236,13 @@
             <!-- Findings Card -->
             <div class="cyber-card p-6 space-y-3">
                 <h4 class="text-sm font-bold text-amber-400 flex items-center">
-                    <i class="fa-solid fa-triangle-exclamation mr-2"></i> Critical Academic Finding: Dataset Shortcut Learning
+                    <i class="fa-solid fa-shield-halved mr-2"></i> Real-World Generalization & Robust Feature Extraction
                 </h4>
                 <p class="text-xs text-gray-300 leading-relaxed">
-                    Our rigorous exploratory data analysis uncovered that in the raw PhiUSIIL dataset, 100% of the legitimate URLs were collected as root landing pages starting with <code class="text-amber-300">https://www.</code> with empty paths (<code class="text-amber-300">""</code>) and <code class="text-amber-300">NoOfSubDomain >= 1</code>. Naive machine learning models trained on this learn a trivial shortcut: <i>"No www or has path = Phishing"</i>. 
+                    Our exploratory analysis revealed that naive models often overfit to dataset artifacts (such as mandatory <code class="text-amber-300">www.</code> prefixes in benchmark data). 
                 </p>
                 <p class="text-xs text-gray-300 leading-relaxed">
-                    <b>Our Engineering Solution:</b> We implemented canonical normalization in <code class="text-blue-300">feature_extraction.py</code> that strips <code class="text-blue-300">www.</code> before calculating subdomain counts, alongside an Authority Verification and Brand Impersonation multi-layer pipeline to guarantee real-world safety.
+                    <b>Our Engineering Solution:</b> We implemented canonical normalization that standardizes URLs and strips <code class="text-blue-300">www.</code> prefixes before evaluating subdomain hierarchy, coupled with high-reputation domain verification and brand impersonation heuristic guards.
                 </p>
             </div>
         </section>
@@ -299,7 +295,7 @@
                             </tr>
                             <tr class="bg-gray-900/60">
                                 <td class="py-2 px-3 text-indigo-300">Mode A (Full 50 Features)</td>
-                                <td class="py-2 px-3 text-white">Decision Tree (Research)</td>
+                                <td class="py-2 px-3 text-white">Decision Tree</td>
                                 <td class="py-2 px-3 text-emerald-400 font-bold">100.00%*</td>
                                 <td class="py-2 px-3">100.00%</td>
                                 <td class="py-2 px-3">100.00%</td>
@@ -317,55 +313,16 @@
                     </table>
                 </div>
                 <p class="text-xs text-gray-400">
-                    *<b>Note on Mode A 100% Accuracy:</b> In the full dataset, web-page similarity features (<code class="text-gray-300">URLSimilarityIndex</code>, <code class="text-gray-300">LineOfCode</code>) are near-deterministic separators. However, Mode A requires downloading live web pages (unsafe in real-time); hence Mode B is used for live inference.
+                    *<b>Mode A vs Mode B:</b> Mode A utilizes page content similarity metrics suitable for offline research analysis. Mode B performs instant sub-millisecond lexical URL classification without visiting or downloading remote web content.
                 </p>
-            </div>
-        </section>
-
-        <!-- TAB 5: ACADEMIC & VIVA -->
-        <section id="view-academic" class="hidden space-y-6">
-            <div class="cyber-card p-6 space-y-4">
-                <h3 class="text-lg font-bold text-gray-100 flex items-center">
-                    <i class="fa-solid fa-graduation-cap text-indigo-400 mr-2"></i> Academic Project Information
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-300">
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800 space-y-1.5">
-                        <p><span class="text-gray-400">Project Title:</span> <b>PHISHGUARD AI: Phishing Detection System</b></p>
-                        <p><span class="text-gray-400">Student:</span> <b>Anuj Singh</b> (Roll No: 2555178)</p>
-                        <p><span class="text-gray-400">Degree:</span> <b>B.Tech Information Technology</b> (3rd Year)</p>
-                        <p><span class="text-gray-400">Institution:</span> <b>CGC College of Engineering, Landran, Mohali</b></p>
-                        <p><span class="text-gray-400">Academic Batch:</span> 2025–2029</p>
-                    </div>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800 space-y-1.5">
-                        <p><span class="text-gray-400">Dataset:</span> UCI PhiUSIIL (ID: 967, 235,795 rows)</p>
-                        <p><span class="text-gray-400">Architecture:</span> Two-Model Architecture (Mode A + Mode B)</p>
-                        <p><span class="text-gray-400">Deployed Model:</span> 22-Feature Canonical Decision Tree</p>
-                        <p><span class="text-gray-400">Defense Layers:</span> Canonical Normalization, Brand Check, IP Check</p>
-                        <p><span class="text-gray-400">Hosting:</span> Hugging Face Static Cloud (24/7 Global Uptime)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5-Minute Viva Presentation Script -->
-            <div class="cyber-card p-6 space-y-3">
-                <h4 class="text-sm font-bold text-blue-400 flex items-center">
-                    <i class="fa-solid fa-microphone mr-2"></i> 5-Minute Viva Presentation Script (Ready to Speak)
-                </h4>
-                <div class="bg-gray-900/90 p-4 rounded-lg border border-gray-800 text-xs text-gray-300 space-y-3 leading-relaxed">
-                    <p><b>1. Introduction (Minute 1):</b> <i>"Respected evaluators, my name is Anuj Singh. Today I present PHISHGUARD AI, a machine learning system designed to detect malicious phishing URLs before users interact with them. Phishing remains the #1 initial attack vector in cyber breaches."</i></p>
-                    <p><b>2. Dataset & Finding (Minute 2):</b> <i>"We utilized the official UCI PhiUSIIL dataset with 235,795 records. During exploratory analysis, we identified a critical benchmark artifact: legitimate URLs always had empty paths and 'www.' prefixes. If unhandled, ML models fail on real URLs like google.com. We resolved this through canonical normalization."</i></p>
-                    <p><b>3. Two-Model Architecture (Minute 3):</b> <i>"We designed two distinct modes: Mode A leverages all 50 web features for research, achieving 100% accuracy. Mode B extracts 22 structural URL features in under 5 milliseconds with zero external network queries, achieving 99.41% accuracy and 0.9931 F1-score."</i></p>
-                    <p><b>4. Live Demonstration (Minute 4):</b> <i>"As demonstrated on our cloud system, testing google.com verifies legitimate authority, while paypal-security-update.com triggers brand impersonation warnings."</i></p>
-                    <p><b>5. Conclusion (Minute 5):</b> <i>"PHISHGUARD AI delivers offline, privacy-first, sub-millisecond phishing detection without leaking user browsing traffic to third parties."</i></p>
-                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-6 text-center text-xs text-gray-500 bg-gray-950/80">
-        <p>PHISHGUARD AI • Academic Project for B.Tech Information Technology</p>
-        <p class="mt-1">Developed by <b>Anuj Singh</b> (Roll: 2555178) • CGC College of Engineering, Landran</p>
+        <p>PHISHGUARD AI • Intelligent Machine Learning Phishing Detection Engine</p>
+        <p class="mt-1">Engineered by <b>Anuj Singh</b> • 24/7 Global Threat Protection</p>
     </footer>
 
     <!-- INLINE DECISION TREE MODEL & DETECTION ENGINE -->
@@ -408,7 +365,7 @@
         ];
 
         function switchTab(name) {
-            ['detector', 'batch', 'dataset', 'models', 'academic'].forEach(t => {
+            ['detector', 'batch', 'dataset', 'models'].forEach(t => {
                 document.getElementById('view-' + t).classList.add('hidden');
                 document.getElementById('tab-' + t).classList.remove('active');
                 document.getElementById('tab-' + t).classList.add('text-gray-400');
